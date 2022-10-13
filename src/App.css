@@ -1,0 +1,60 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  padding: 10px;
+}
+
+.app_search {
+  width: 90vw;
+  margin: 10px 0;
+}
+
+#search {
+  border-radius: 15px;
+  width: 100%;
+  height: 40px;
+  padding: 5px;
+  border: 1px solid rgb(187, 185, 185);
+}
+
+.app_search-container {
+  position: relative;
+  width: 100%;
+}
+
+.app_icon-search {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  color: grey;
+}
+
+.app_table {
+  width: 90vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  font-size: 18px;
+}
+
+.app_table-element {
+  width: 30%;
+  height: 110px;
+  margin-bottom: 15px;
+  color: grey;
+  border-radius: 15px;
+  padding: 15px;
+  cursor: pointer;
+  box-shadow: 5px 10px 4px 2px rgb(201, 201, 201);
+}
+
+.toast-header {
+  color: black;
+  height: 35px;
+}
+
+.app_icon {
+  margin-right: 10px;
+}
