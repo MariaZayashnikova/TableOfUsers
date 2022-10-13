@@ -32,7 +32,14 @@ function App() {
 
   function search() {
     resultSearch = users.filter(elem => elem.name.toLowerCase().includes(valueSearch));
-  }
+    if (resultSearch.length === 0) {
+      resultSearch.push({
+        name: 'Ничего не найдено',
+        phone: '-',
+        email: '-'
+      });
+    }
+  };
 
   if (valueSearch) search();
 
@@ -45,21 +52,21 @@ function App() {
             id="search"
             onInput={debounce(searchStart, 1000)}
           />
-          <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" className='app_icon-search' />
+          {valueSearch ? null : (<FontAwesomeIcon icon="fa-solid fa-magnifying-glass" className='app_icon-search' />)}
         </div>
       </div>
       <div className='app_table'>
-        {users ? (resultSearch.length > 0 ? (resultSearch.map(elem => {
+        {users ? (resultSearch.length > 0 ? (resultSearch.map((elem, i) => {
           return (
-            <Toast className='app_table-element' key={elem.phone}>
+            <Toast className='app_table-element' key={i}>
               <Toast.Header closeButton={false}><strong>{elem.name}</strong></Toast.Header>
               <Toast.Body><FontAwesomeIcon icon="fa-solid fa-mobile-screen-button" className='app_icon' />{elem.phone}</Toast.Body>
               <Toast.Body><FontAwesomeIcon icon="fa-solid fa-envelope" className='app_icon' />{elem.email}</Toast.Body>
             </Toast>
           )
-        })) : (users.map(elem => {
+        })) : (users.map((elem, i) => {
           return (
-            <Toast className='app_table-element' key={elem.phone}>
+            <Toast className='app_table-element' key={i}>
               <Toast.Header closeButton={false}><strong>{elem.name}</strong></Toast.Header>
               <Toast.Body><FontAwesomeIcon icon="fa-solid fa-mobile-screen-button" className='app_icon' />{elem.phone}</Toast.Body>
               <Toast.Body><FontAwesomeIcon icon="fa-solid fa-envelope" className='app_icon' />{elem.email}</Toast.Body>
