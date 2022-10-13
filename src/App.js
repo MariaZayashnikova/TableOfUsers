@@ -14,6 +14,8 @@ function App() {
   }
 
   const [users, setUsers] = useState();
+  const [valueSearch, setValueSearch] = useState();
+  let resultSearch = [];
 
   if (!users) {
     getdata()
@@ -22,13 +24,18 @@ function App() {
       })
       .catch(error => console.log(error));
   }
-  console.log(users);
 
   function searchStart(e) {
-    // fetchDialoguesFromDatabase()
-    // resultSearch = []
-    // setValueSearch(e.target.value.toLowerCase())
+    resultSearch = [];
+    setValueSearch(e.target.value.toLowerCase());
   }
+
+  function search() {
+    resultSearch = users.filter(elem => elem.name.toLowerCase().includes(valueSearch));
+  }
+
+  if (valueSearch) search();
+
   return (
     <div className="app">
       <div className="app_search">
@@ -36,13 +43,13 @@ function App() {
           <input
             type="search"
             id="search"
-          // onInput={debounce(searchStart, 1000)}
+            onInput={debounce(searchStart, 1000)}
           />
           <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" className='app_icon-search' />
         </div>
       </div>
       <div className='app_table'>
-        {users ? (users.map(elem => {
+        {users ? (resultSearch.length > 0 ? (resultSearch.map(elem => {
           return (
             <Toast className='app_table-element' key={elem.phone}>
               <Toast.Header closeButton={false}><strong>{elem.name}</strong></Toast.Header>
@@ -50,7 +57,15 @@ function App() {
               <Toast.Body><FontAwesomeIcon icon="fa-solid fa-envelope" className='app_icon' />{elem.email}</Toast.Body>
             </Toast>
           )
-        })) : null}
+        })) : (users.map(elem => {
+          return (
+            <Toast className='app_table-element' key={elem.phone}>
+              <Toast.Header closeButton={false}><strong>{elem.name}</strong></Toast.Header>
+              <Toast.Body><FontAwesomeIcon icon="fa-solid fa-mobile-screen-button" className='app_icon' />{elem.phone}</Toast.Body>
+              <Toast.Body><FontAwesomeIcon icon="fa-solid fa-envelope" className='app_icon' />{elem.email}</Toast.Body>
+            </Toast>
+          )
+        }))) : (<div>ОЙ! Что-то пошло не так... Попробуйте позже.</div>)}
       </div>
     </div>
   );
