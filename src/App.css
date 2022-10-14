@@ -27,7 +27,7 @@
 .app_icon-search {
   position: absolute;
   top: 10px;
-  right: 7px;
+  right: 10px;
   color: grey;
 }
 
@@ -41,7 +41,6 @@
 
 .app_table-element {
   width: 30%;
-  height: 110px;
   margin-bottom: 15px;
   color: grey;
   border-radius: 15px;
@@ -57,4 +56,55 @@
 
 .app_icon {
   margin-right: 10px;
+}
+
+.app_modal {
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  margin-left: -20vw;
+  width: 40vw;
+  height: auto;
+  border-radius: 20px;
+}
+
+.app_modal_header {
+  padding: 0;
+  padding-left: 10px;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.app_modal-btnClose {
+  cursor: pointer;
+  position: absolute;
+  top: -15px;
+  left: 50%;
+}
+
+.app_modal-title {
+  font-weight: bold;
+  font-size: 24px;
+  margin: 20px 0 25px 0;
+}
+
+.app_modal_container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.app_modal_container > p {
+  width: 50%;
+}
+
+.colorGrey {
+  color: grey;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.modal-footer {
+  display: block;
 }
